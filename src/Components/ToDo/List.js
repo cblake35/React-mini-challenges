@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap'
 
 
@@ -12,16 +12,16 @@ const List = () => {
         setMyList([...myList, todo])
     }
 
-    useEffect(() => {
-        console.log(myList)
-    })
-
+    const removeItem = (index) => {
+        myList.splice(index, 1)
+        setMyList([...myList])
+    }
 
     return (
         <Container>
             <Row>
                 <Col>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={(e) => handleSubmit(e)}>
                         <input type='text' value={todo} onChange={(e) => setTodo(e.target.value)} ></input>
                         <button type='submit'>Add</button>
                     </form>
@@ -31,9 +31,9 @@ const List = () => {
                 <Col>
                     {myList.map((item, index) => {
                         return (
-                            <div className='itemWrapper'>
-                                <h2 key={index}>{item}</h2>
-                                <button>Delete</button>
+                            <div key={index} className='itemWrapper'>
+                                <h2 >{item}</h2>
+                                <button onClick={(e) => removeItem(index)}>Done</button>
                             </div>
                         )
                     })}

@@ -44,7 +44,7 @@ class SearchIndex extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.searchFunction}>
+        <form onSubmit={(e) => this.searchFunction(e)}>
           <Input type='text' placeholder='Search Here' value={this.state.searchValue} onChange={(e) => this.setState({ searchValue: e.target.value })} />
           <Button type='submit'>Submit</Button>
         </form>
